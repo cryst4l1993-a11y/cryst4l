@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Login Page</title>
+  <style>
+    /*
+      ========================================
+      Root theme variables for quick styling
+      ========================================
+    */
+    :root {
+      --bg-gradient-start: #e0e7ff;
+      --bg-gradient-end: #f0f9ff;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --input-border: #d1d5db;
+      --focus-ring: rgba(79, 70, 229, 0.2);
+      --shadow: 0 18px 40px rgba(17, 24, 39, 0.16);
+      --radius: 18px;
+      --transition: 180ms ease;
+    }
+
+    /* Basic reset + smooth font rendering */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-primary);
+      background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+
+      /* Flexbox centering for the login card */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /*
+      ========================================
+      Login card container
+      ========================================
+    */
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(6px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      animation: fadeInUp 420ms ease;
+    }
+
+    /* Logo placeholder block */
+    .logo-placeholder {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: linear-gradient(145deg, #6366f1, #3b82f6);
+      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.3);
+      user-select: none;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    /* Form layout */
+    .form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 0.92rem;
+      color: #374151;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid var(--input-border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.96rem;
+      color: var(--text-primary);
+      background: #ffffff;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+
+    /* Subtle hover and focus effects for inputs */
+    input:hover {
+      border-color: #a5b4fc;
+      transform: translateY(-1px);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--focus-ring);
+    }
+
+    input::placeholder {
+      color: #9ca3af;
+    }
+
+    .actions {
+      margin-top: 6px;
+      display: grid;
+      gap: 12px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent), #3b82f6);
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.28);
+    }
+
+    /* Subtle hover effect for button */
+    button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 14px 24px rgba(79, 70, 229, 0.33);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .forgot {
+      justify-self: center;
+      font-size: 0.92rem;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition), opacity var(--transition);
+    }
+
+    .forgot:hover {
+      color: var(--accent-hover);
+      opacity: 0.9;
+      text-decoration: underline;
+    }
+
+    .status {
+      min-height: 1.2em;
+      text-align: center;
+      font-size: 0.88rem;
+      color: #047857;
+    }
+
+    /* Responsive tweaks for compact screens */
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 24px;
+        border-radius: 16px;
+      }
+
+      .title {
+        font-size: 1.25rem;
+      }
+
+      .logo-placeholder {
+        width: 68px;
+        height: 68px;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Centered login card -->
+  <main class="login-card" aria-label="Login form card">
+    <!-- Company logo placeholder -->
+    <div class="logo-placeholder" aria-hidden="true">LOGO</div>
+
+    <h1 class="title">Welcome Back</h1>
+    <p class="subtitle">Sign in to continue to your dashboard</p>
+
+    <!-- Login form with semantic labels and placeholders -->
+    <form class="form" id="loginForm" novalidate>
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="you@company.com"
+          autocomplete="email"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+          minlength="6"
+        />
+      </div>
+
+      <div class="actions">
+        <button type="submit">Login</button>
+        <a href="#" class="forgot">Forgot Password?</a>
+        <p class="status" id="statusMessage" aria-live="polite"></p>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    // Lightweight JS for friendly client-side validation feedback.
+    const loginForm = document.getElementById("loginForm");
+    const statusMessage = document.getElementById("statusMessage");
+
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const email = loginForm.email.value.trim();
+      const password = loginForm.password.value;
+
+      if (!email || !password) {
+        statusMessage.style.color = "#b91c1c";
+        statusMessage.textContent = "Please fill in both email and password.";
+        return;
+      }
+
+      if (password.length < 6) {
+        statusMessage.style.color = "#b91c1c";
+        statusMessage.textContent = "Password must be at least 6 characters.";
+        return;
+      }
+
+      statusMessage.style.color = "#047857";
+      statusMessage.textContent = "Login successful (demo message).";
+    });
+  </script>
+</body>
+</html>
